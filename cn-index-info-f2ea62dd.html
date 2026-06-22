@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>资料索引 · PG模拟器</title>
+    <style>
+        /* 重置与基础 */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background: #f3f4f6;
+            color: #1f2a3a;
+            line-height: 1.65;
+            padding: 0 1rem 3rem;
+        }
+
+        a {
+            color: #2a5c8a;
+            text-decoration: none;
+            border-bottom: 1px dotted #b0c6db;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        a:hover, a:focus {
+            color: #163b5c;
+            border-bottom-color: #1e4d74;
+        }
+
+        /* 导航栏 — 浅灰背景，细边框 */
+        .nav-bar {
+            max-width: 1120px;
+            margin: 0 auto 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 0 0.8rem;
+            border-bottom: 1px solid #d8dee7;
+        }
+
+        .nav-logo {
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: #1e2b3c;
+        }
+        .nav-logo small {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #5f6f82;
+            margin-left: 0.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.2rem 1.8rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.95rem;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid transparent;
+            color: #2a4055;
+            font-weight: 450;
+        }
+        .nav-links a:hover {
+            border-bottom-color: #2a5c8a;
+            color: #0f2a41;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* hero 区 */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 2.6rem 2.8rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+            border: 1px solid #e4e9f0;
+        }
+        .hero-card h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #132433;
+            margin-bottom: 0.75rem;
+        }
+        .hero-card p {
+            font-size: 1.05rem;
+            max-width: 680px;
+            color: #374b60;
+        }
+        .hero-card .tagline {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            background: #eef2f8;
+            display: inline-block;
+            padding: 0.25rem 1.2rem;
+            border-radius: 40px;
+            color: #1d3b57;
+            border: 1px solid #d7e0ea;
+        }
+
+        /* 板块卡片通用 */
+        .section-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.8rem 2.2rem 2.2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e6ebf2;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s;
+        }
+        .section-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 540;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ebf0f8;
+            color: #1a2d40;
+        }
+
+        /* 三场景网格 */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.5rem;
+            margin-top: 0.6rem;
+        }
+        .scene-item {
+            background: #f8faff;
+            padding: 1.4rem 1.2rem;
+            border-radius: 14px;
+            border: 1px solid #e1e8f1;
+        }
+        .scene-item .emoji-badge {
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+        }
+        .scene-item h3 {
+            font-size: 1.1rem;
+            font-weight: 540;
+            margin: 0.4rem 0 0.35rem;
+            color: #1d334a;
+        }
+        .scene-item p {
+            font-size: 0.94rem;
+            color: #41566b;
+        }
+
+        /* 常见说明 / FAQ 摘要 */
+        .faq-list {
+            list-style: none;
+            margin-top: 0.2rem;
+        }
+        .faq-list li {
+            padding: 0.7rem 0 0.6rem;
+            border-bottom: 1px solid #edf0f6;
+        }
+        .faq-list li:last-child {
+            border-bottom: none;
+        }
+        .faq-list strong {
+            font-weight: 550;
+            color: #1d3146;
+            display: inline-block;
+            min-width: 4.2rem;
+        }
+
+        /* 页脚 */
+        .footnote {
+            margin-top: 1.8rem;
+            font-size: 0.9rem;
+            color: #5d6f82;
+            border-top: 1px solid #dbe2ec;
+            padding-top: 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footnote a {
+            border-bottom: none;
+            font-weight: 460;
+        }
+
+        /* 响应式 */
+        @media (max-width: 720px) {
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.4rem;
+            }
+            .hero-card {
+                padding: 1.8rem 1.5rem;
+            }
+            .hero-card h1 {
+                font-size: 1.7rem;
+            }
+            .section-card {
+                padding: 1.4rem 1.2rem;
+            }
+            .scenes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            body { padding: 0 0.6rem 2rem; }
+            .hero-card { padding: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="container">
+    <nav class="nav-bar" aria-label="主导航">
+        <span class="nav-logo">📇 PG模拟器 <small>资料索引</small></span>
+        <ul class="nav-links">
+            <li><a href="#intro">总览</a></li>
+            <li><a href="#scenes">场景</a></li>
+            <li><a href="#faq">说明</a></li>
+            <li><a href="#bottom">信息</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+
+    <!-- hero 区：轻量切入资料整理角度 -->
+    <div class="hero-card" id="intro">
+        <h1>信息整理 · 模拟环境</h1>
+        <p>
+            把零散的资料、教程和实际体验收拢成一个可翻阅的索引，这就是 <a href="https://cn-index-pgsimulator.com">PG模拟器</a> 在做的事。
+            没有复杂的门槛，也不追求大而全，只希望需要的时候能按图索骥。
+        </p>
+        <div class="tagline">📋 从资料归档到模拟操作 · 轻量化索引</div>
+    </div>
+
+    <!-- 核心介绍：卡片式 两段 -->
+    <div class="section-card">
+        <h2 class="section-title">📂 从整理开始</h2>
+        <p style="margin-bottom:0.8rem;">
+            很多时候，查找一个操作步骤或参数含义比执行本身更花时间。<a href="https://cn-index-pgsimulator.com">PG模拟器</a> 
+            把相关知识按模块归置，配合模拟环境让理解更直接。无论是刚接触还是偶尔回来翻一翻，结构都尽量保持清爽。
+        </p>
+        <p>
+            资料本身并不追求长篇大论，而是倾向提炼出关键节点、常用字段和典型流程。配合一些可交互的示例，减少反复翻阅文档的疲劳。
+            如果你也喜欢把信息摊开再收拢，这个索引应该合胃口。
+        </p>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="section-card" id="scenes">
+        <h2 class="section-title">🔍 三个常用场景</h2>
+        <div class="scenes-grid">
+            <div class="scene-item">
+                <div class="emoji-badge">🧩</div>
+                <h3>搭建 & 配置</h3>
+                <p>从初始化参数到连接设置，常见环节的要点整理。适合部署前快速核对或排查时对照。</p>
+            </div>
+            <div class="scene-item">
+                <div class="emoji-badge">📊</div>
+                <h3>查询 & 分析</h3>
+                <p>语句写法、执行计划解读、统计信息查看 —— 把常用的分析路径收在一起，少翻几页文档。</p>
+            </div>
+            <div class="scene-item">
+                <div class="emoji-badge">🔄</div>
+                <h3>维护 & 迁移</h3>
+                <p>备份策略、版本升级、数据迁移的注意事项和常用指令。适合做操作前 checklist 参考。</p>
+            </div>
+        </div>
+        <p style="margin-top:1.2rem; font-size:0.94rem; color:#3d536b;">
+            每个场景下都有对应的资料卡片和模拟引导，不强调覆盖所有细节，但求索引清晰。
+        </p>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="section-card" id="faq">
+        <h2 class="section-title">📌 常见说明</h2>
+        <ul class="faq-list">
+            <li><strong>资料性质</strong> 内容来源于实际使用中的归纳，并非官方文档的替代，更偏向索引和快速参考。</li>
+            <li><strong>模拟环境</strong> 部分页面提供可操作的模拟区域，方便在浏览器里试运行一些语句，不用本地搭建。</li>
+            <li><strong>更新节奏</strong> 不定期补充新的场景卡片和修正旧有内容，每次调整都会尽量保持索引结构一致。</li>
+            <li><strong>反馈方式</strong> 如果你发现某个模块有偏差或者有更好的整理方式，欢迎通过站点提供的渠道留言。</li>
+        </ul>
+    </div>
+
+    <!-- 额外提示：轻量结尾 -->
+    <div class="section-card" style="background:#fbfdff; padding-bottom:1.5rem;">
+        <p style="margin-bottom:0.3rem; font-size:0.98rem;">
+            💡 使用前建议先大致浏览每个场景的标题，心里有个目录。索引的作用不是背诵，而是需要时能找到。
+        </p>
+        <p style="font-size:0.94rem; color:#405872;">
+            如果正好有想整理但一直没动手的内容，不妨从 <a href="https://cn-index-pgsimulator.com">PG模拟器</a> 的框架里获得一点灵感。
+        </p>
+    </div>
+
+</main>
+
+<footer class="container footnote" id="bottom">
+    <span>资料索引 · 非官方 · 保持轻量</span>
+    <span>
+        <a href="https://cn-index-pgsimulator.com">PG模拟器</a> — 信息整理与模拟环境
+    </span>
+</footer>
+
+</body>
+</html>
